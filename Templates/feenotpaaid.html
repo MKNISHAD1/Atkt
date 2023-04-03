@@ -1,0 +1,30 @@
+{% extends 'base_dash.html' %}
+{% load static %}
+{% block dashboard %}
+{%if data.is_fee_paid%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <div class="jumbotron">
+                <h2>Dear Student {{user.first_name}} {{user.last_name}} , Your Username is {{user.username}}.</h2>
+                <h2> Dear Student Your Result is Not Out Yet, We are working on it . It will be Out Soon.</h2>
+                {% comment %} <p style="color:red;"> Note : In case , you paid the fee , it might be getting verified, So it will reflect soon and you can see ypur result. {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <div class="jumbotron">
+                <h2>Dear Student {{user.first_name}} {{user.last_name}} , Your Username is {{user.username}}.</h2>
+                <h2> dear Student You Not Paid The Fee ,That's Why you can't see the result .</h2>
+                <p style="color:red;"> Note : In case , you paid the fee , it might be getting verified, So it will reflect soon and you can see ypur result.
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock dashboard %}
+

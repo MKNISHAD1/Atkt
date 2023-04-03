@@ -1,0 +1,25 @@
+{% extends 'base_dash.html' %}
+{% load bootstrap4 %}
+{% block dashboard %}
+
+{% comment %} first install pip install django-bootstrap4 {% endcomment %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto bg-light my-6">
+            <h1>Result Form For Students</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <input type="submit" value="done" class="btn btn-primary ">
+                <div class="py-2"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    {% if status%}
+    alert("{{status}}")
+    {%endif%}
+</script>
+{% endblock dashboard %}

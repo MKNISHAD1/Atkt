@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Teacher Register {% endblock title %}
+<html>
+    <body>
+{% block Body %}
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-6 px-0"  style="background:url('/static/img/clgimg.jpg');background-size:100% 100%;">
+          <div  class="h-100" style="background:rgba(0,0,0,0.5)"></div>
+      </div>
+      <div class="col-md-6">
+          <h1 style="text-align:center;">Teacher SignUp Form</h1>
+          <form action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row">
+                  <div class="col-md-6">
+                      <label for="">Please Enter the Sign Up Password</label>
+                      <div>
+                          <small id="result1"></small>
+                        </div>
+                <input type="password" class="form-control" placeholder="Enter Sign Up Password" name="tealog" id="sgpass" onkeyup="usercheck1()" required>
+            </div>
+        </div>
+                 
+               <div class="form-group">
+                   <div class="row">
+                       <div class="col-md-6 py-2 ">
+                            <label for="">First Name</label>
+                            <input type="text" class="form-control" placeholder="Enter First Name" name="first" required>
+                        </div>
+                        <div class="col-md-6 py-2">
+                            <label for="">Last Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Last Name" name="last" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Username</label>
+                            <div>
+                              <small id="result"></small>
+                            </div>
+                  <input type="text" class="form-control" placeholder="Enter Username" name="usrname" id="username" onkeyup="usercheck()">
+              </div></div>
+              <div class="col-md-6">
+              <div class="form-group">
+                  <label for="">Password</label>
+                  <input type="password" class="form-control" placeholder="Enter Password" name="password" required> 
+                </div></div></div>
+                <div class="row">
+                    <div class="col-md-6">
+              <div class="form-group">
+                  <label for="">Email</label>
+                  <input type="email" class="form-control" placeholder="Enter Email Address" name="email" required>
+                </div></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Contact Number</label>
+                        <input type="number" class="form-control" placeholder="Enter Mobile Number" name="phone" required>
+                    </div></div></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select name="gender" id="gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Upload Profile Pic</label>
+                                <input type="file" class="form-control" name="pic" required>
+                            </div></div>
+                            <div class="col-md-3 py-4">
+                            <label for="Role">Role : </label>
+                            <input type="radio"  value="Tea" name="role" checked="True">Teacher
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 px-2 py-4">
+                                <input type="submit" value="SignUp" class="btn btn-success" id="submitbtn">
+                        </div>
+                    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<script>
+  function usercheck(){
+      let unm = document.getElementById("username").value;
+      $.ajax({
+          url:"{% url 'check_user' %}",
+          type:"get",
+          data:{usr:unm},
+          success:function(data){
+            if(data=="Exist"){
+                $("#result").html("This Usernane is Already Taken  !!!!").addClass("text-danger");
+                $("#username").addClass("alert alert-denger");
+                $("#submitbtn").attr("disabled","disabled");
+            }
+            else{
+                $("#result").html("");
+                $("#username").removeClass("alert alert-denger");
+                $("#submitbtn").removeAttr("disabled");
+            }
+        }
+    })
+      
+  }
+   function usercheck1(){
+    let sg_pass=document.getElementById("sgpass").value;
+    $.ajax({
+        url:"{% url 'check_user1' %}",
+        type:"get",
+        data:{pass:sg_pass},
+        success:function(data){
+            if(data=="Wrong"){
+                $("#result1").html("This is Wrong Password  !!!! Please Enter right password for SignUp").addClass("text-danger");
+                $("#sgpass").addClass("alert alert-denger");
+                $("#submitbtn").attr("disabled","disabled");
+            }
+            else{
+                $("#result1").html("");
+                $("#pass").removeClass("alert alert-denger");
+                $("#submitbtn").removeAttr("disabled");
+            }
+        }
+
+    })
+   }
+</script>
+
+{% if status %}
+  <script>
+      alert("{{status}}");
+      window.location="/"
+
+    </script>
+{% endif %}
+
+
+{% endblock Body %}
+</body>
+</html>

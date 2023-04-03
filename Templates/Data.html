@@ -1,0 +1,84 @@
+
+{% extends 'base_dash.html' %}
+
+{% block dashboard %}
+{% if data1.publish_Result %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto py-4">
+            <div class="card">
+                <div class="card-header">
+                    <h1>My Result</h1>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Username</th>
+                                <td>{{user.username}}</td>
+                            </tr>
+                            <tr>
+                                <th>Full Name</th>
+                                <td>{{user.first_name}} {{data.Middle_Name}} {{user.last_name}}</td>
+                            </tr>
+                            <tr>
+                                <th>Father Name</th>
+                                <td>{{data.Father_Name}}</td>
+                            </tr>
+                            <tr>
+                                <th>Course</th>
+                                <td>{{data1.course}}</td>
+                            </tr>
+                            <tr>
+                                <th>Semeter</th>
+                                <td>{{data1.Semester}}</td>
+                            </tr>
+                            <tr>
+                                <th>Result</th>
+                                <td>{{data1.Result}}</td>
+                            </tr>
+                            <tr>
+                                <th>Grade</th>
+                                <td>{{data1.Grade}}</td>
+                            </tr>
+                            <tr>
+                                <th>SGPI Point</th>
+                                <td>{{data1.SGPI}}</td>
+                            </tr>
+                            <tr>
+                                <th>Atkt Exam</th>
+                                <td>{{data1.Exam}}</td>
+                            </tr>
+                            <tr>
+                                <th>Atkt Subject</th>
+                                <td>{{data1.Subject}}</td>
+                            </tr>
+                            <tr>
+                                <th>Atkt Fee</th>
+                                <td>{{data1.Exam_Fee}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% else %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <div class="jumbotron">
+                <h2>Dear Student {{user.first_name}} {{user.last_name}} , Your Username is {{user.username}}.</h2>
+                <h2> Dear Student Your Result is Not Out Yet, We are working on it . It will be Out Soon.</h2>
+                {% comment %} <p style="color:red;"> Note : In case , you paid the fee , it might be getting verified, So it will reflect soon and you can see ypur result. {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock%}

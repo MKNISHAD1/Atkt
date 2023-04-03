@@ -1,0 +1,183 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %} | MKNISHAD</title>
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{%static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{%static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{%static 'css/util.css' %}">
+    <script src="{% static 'jquery.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .spinner{
+            height:100px;width:100px;border: 10px solid gray;border-bottom:10px solid  blue;
+            animation:ani 1s linear infinite;border-radius: 50%;margin:auto
+        }
+        @keyframes ani{
+            from{transform:rotate(0deg)}
+            to{transform:rotate(360deg)}
+        }
+    </style>
+    
+</head>
+<header> 
+        <div class="panal">
+            <strong>NAAC Accredited, 'A' Grade, CGPA 3.19</strong>
+            
+        </div>
+        <div class="log">
+            <img class="logo" src="{% static 'img/logo.jpg' %}" height=85px>
+            <a href="https://www.acharyamarathecollege.in/"><img class="logo" src="{% static 'img/name.jpg' %}" height=85px></a>
+            <img class="logo" src="{% static 'img/logo.jpg' %}" height=85px>
+        </div>        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 px-0">
+                    <nav class="navbar navbar-expand" style="background-image: -webkit-linear-gradient(-45deg,#405de6,#e1306c 50%,#ffdc80);">
+                        <li style="list-style-type:none; padding: 0 25px;">
+                            <a style="color:white; text-decoration: none; font-size:20px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='white'" href="/">Home</a>
+                        </li>
+                        <li style="list-style-type:none; padding: 0 25px;">
+                            <a style="color:white; text-decoration: none; font-size:20px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='white'" href="about">About</a>
+                        </li>
+                        
+                        {% comment %} <li style="list-style-type:none; padding: 0 25px;">
+                            <a style="color:white; text-decoration: none; font-size:20px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='white'" href="login">Login</a>
+                        </li>{% endcomment %}
+                        {% comment %} <li style="list-style-type:none; padding: 0 25px;">
+                            <a style="color:white; text-decoration: none; font-size:20px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='white'" href="register">SignUp</a>
+                        </li>  {% endcomment %}
+
+
+                            {% if user.is_authenticated %}
+                            {% if user.is_superuser %}
+                            <li style="list-style-type:none; padding-left :54%;">
+                                <a href="admin/" style="color:white; text-decoration: none; font-size:20px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='white'">Welcome {{user.username}}</a>
+                            </li>{%else%}
+                            <li style="list-style-type:none; padding-left :65%;">
+                                <a href="{% url 'Stud_Dash' %}" style="color:white; text-decoration: none; font-size:20px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='white'">Welcome {{user.username}}</a>
+                            </li>
+                            {%endif%}
+                            {% else %}
+                            <li style="list-style-type:none; padding-left :70%;">
+                                <a class="btn btn-outline-light" style="color:white; text-decoration: none; font-size:20px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='white'" href="{% url 'Register' %}">Sign Up</a>
+                            </li>
+                            <li style="list-style-type:none; padding-left:10px;">
+                                <a class=" btn btn-outline-light" data-toggle="modal"
+                                data-target="#mymodal" style="color:white; text-decoration: none; font-size:20px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='white'" href="">Login</a>
+                            </li>
+                            {% endif %}
+                    </nav>
+                
+                <div class="col-md-12">
+                    <div class="modal fade" id="mymodal">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'Login' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label>Username</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-user"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" name="username" class="form-control" placeholder="Enter Username">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-key"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="password" name="password" class="form-control" placeholder="Enter Password">
+                                            </div>                                    
+                                        </div>
+                                        <div class="form-group">
+                                            
+                                            <a href="{% url 'forgot_pass'%}">Forgot Password?</a>
+                                        </div>
+                                    
+                                        <div class="form-group">
+                                            <input type="submit" value="submit" class="btn btn-success">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>         
+
+{% block Body %}
+
+{% endblock Body %}
+<footer class="footer">
+        <div class="cont">
+            <div class="py-4">
+            <div class="row">
+                <div>
+                    <h4>College</h4>
+                    <pre>
+        <a href="home"><img src="{% static 'img/logo.jpg' %}" width="125px"></a>
+
+  <a href="home"><img src="{% static 'img/name.jpg' %}" width="225px"></a>
+                    </pre>
+                </div>
+                <div>
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><a href="about">About Us</a></li>
+                        <li><a href="{% url 'Register' %}">Student SignUp</a></li>
+                        <li><a href="{% url 'Tea_Dash' %}">Teacher SignUp</a></li>
+                        <li><a href="/">Home</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Some Useful Link</h4>
+                    <ul>
+                        <li><a target="_blank" href="https://mu.ac.in/">University of Mumbai</a></li>
+                        <li><a target="_blank" href="http://mahresult.nic.in/">HSC Result</a></li>
+                        <li><a target="_blank" href="https://www.ugc.ac.in/">UGC</a></li>
+                        <li><a target="_blank" href="https://www.swayam.gov.in/">SWAYAN</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Social</h4>
+                    <div class="socialButton">
+                        <a target="_blank" href="https://www.facebook.com/AMCollegeChemburOfficial/"><i
+                                class='bx bxl-facebook'></i></a>
+                        <a target="_blank" href="https://twitter.com/AcharyaMarathe"><i class='bx bxl-twitter'></i></a>
+                        <a target="_blank" href="https://www.youtube.com/channel/UCWsdNzMJRMVl7prby6IPWxg"><i
+                                class='bx bxl-youtube'></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright © MkNishad</p>
+        </div>
+</footer>  
+</html>

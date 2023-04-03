@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Gulzar&display=swap');
+:root{
+    --main-bg-color: #0d2d62;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: calc(4.25rem + 2px);
+}
+
+
+footer{
+    height: 10vh;
+    background-color: var(--main-bg-color);
+    color: white;
+    font-family: 'Gulzar', serif;
+}
+
+.log{
+    display: flex;
+    justify-content:center ;
+    padding: 15px 0;
+}
+
+.logo{
+    padding:0 10px;
+}
+
+.panal{
+    background-image: -webkit-linear-gradient(-45deg,#405de6,#e1306c 50%,#ffdc80) !important;
+    padding: 10px;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.map{
+    padding-top: 3px;
+    padding-right: 7px;
+}
+
+
+.clgpic{    
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content:center ;
+}
+
+.redbar{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    background-color: #e1306c;
+   color: white;
+   display:flex;
+   align-items: center;    
+}
+
+
+.hg{
+    padding-left: 75vw;
+}
+.redbar h4 a{
+    text-decoration: none;
+    color:white;
+    display: flex;
+}
+.redbar h4 a:hover{
+    font-weight: 5px;
+    color:aqua;
+    text-decoration: underline;
+}
+.li {
+    display: contents;
+}
+
+.li h4 a{ 
+    padding: 2px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.redbox{
+    border: 2px red solid;
+    background-color:rgb(165, 206, 216);
+    font-weight:lighter;
+    padding: 2vh;
+    border-radius: 5px;
+}
+
+.greenbox{
+    border: 2px rgb(30, 189, 30) solid;
+    background-color:rgb(165, 206, 216);
+    font-weight:lighter;
+    padding: 2vh;
+    border-radius: 5px;
+}
+
+.bluebox{
+    border: 2px rgb(42, 51, 175) solid;
+    background-color:rgb(165, 206, 216);
+    font-weight:lighter;
+    padding: 2vh;
+    border-radius: 5px;
+}
+
+.redbox ul{
+    padding-left:3vw;
+}
+.greenbox ul{
+    padding-left:3vw;
+}
+.bluebox ul{
+    padding-left:3vw;
+}
+.pad{
+    padding: 0 3vw 0 3vw;
+}

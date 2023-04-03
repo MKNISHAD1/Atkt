@@ -1,0 +1,147 @@
+{% extends 'base_dash.html' %}
+{% load static %}
+{% block dashboard %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 bg-img py-5 text-center text-dark">
+            <h1>Dashboard &gt; Edit Profile</h1>
+        </div>
+       
+        <div class="col-md-6 mx-auto p-3 bg-light my-2">
+            <div class="text-center">
+                {% if data.Profile_Pic %}
+                <img src="/media/{{data.Profile_Pic}}" style="height:160px;width:160px;border-radius:50%">
+                {% else %}
+                <img src="{% static 'img/user.png' %}" style="height:160px;width:160px;border-radius:50%">
+                {% endif %}
+            </div>
+            
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if status %}
+                    <div class="alert alert-primary">{{status}}</div>
+                {% endif %}
+                {% if user.is_staff %}
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 py-2">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" name="fname" placeholder="Enter First Name" value="{{user.first_name}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" value="{{user.last_name}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Update Profile Pic</label>
+                        <input type="file" class="form-control" placeholder="Enter Email Address" name="pic">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Contact Number</label>
+                        <input type="number" class="form-control" placeholder="Enter Mobile Number" name="phone" value="{{data.Phone_Number}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" placeholder="Enter Email Id" name="mail" value="{{data.Email}}">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Gender</label>
+              
+                        <select name="gender"  class="form-group">
+                            <option value="Male">Male</option>
+
+                            {% if data.Gender == "Female" %}
+                            <option value="Female" selected>Female</option>
+                            {% else %}
+                            <option value="Female">Female</option>
+                            {% endif %}
+
+                            {% if data.Gender == "Others" %}
+                            <option value="Others" selected>Others</option>
+                            {% else %}
+                            <option value="Others">Others</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                <input type="submit" name="changeprofile" value="Save Changes" class="btn btn-primary" style="width:50%;border-radius:20px;">
+            </div>
+        </div>
+            {% else %}
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 py-2">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" name="fname" placeholder="Enter First Name" value="{{user.first_name}}">
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label>Middle Name</label>
+                        <input type="text" class="form-control" name="mname" placeholder="Enter Middle Name" value="{{data.Middle_Name}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" value="{{user.last_name}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Father Name</label>
+                        <input type="text" class="form-control" name="fdname" placeholder="Enter Father Name" value="{{data.Father_Name}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Update Profile Pic</label>
+                        <input type="file" class="form-control" placeholder="Enter Email Address" name="pic">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Update Fee Pdf</label>
+                        <input type="file" class="form-control" placeholder="Enter Mobile Number" name="pdf">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Contact Number</label>
+                        <input type="number" class="form-control" placeholder="Enter Mobile Number" name="phone" value="{{data.Phone_Number}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" placeholder="Enter Email Id" name="mail" value="{{data.Email}}">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Gender</label>
+              
+                        <select name="gender"  class="form-group">
+                            <option value="Male">Male</option>
+
+                            {% if data.Gender == "Female" %}
+                            <option value="Female" selected>Female</option>
+                            {% else %}
+                            <option value="Female">Female</option>
+                            {% endif %}
+
+                            {% if data.Gender == "Others" %}
+                            <option value="Others" selected>Others</option>
+                            {% else %}
+                            <option value="Others">Others</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                <input type="submit" name="changeprofile" value="Save Changes" class="btn btn-primary" style="width:50%;border-radius:20px;">
+            </div>
+        </div>
+        {%endif%}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Dashboard {% endblock title %}
+{% block Body %}
+{% if user.is_superuser %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-4">
+                <div class="jumbotron">
+                    <h1>Sorry Mr./Miss {{user.username}} You are not allowed Here</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- left side menu -->
+        <div class="col-md-2 bg-dark py-2">
+            <nav class="navbar navbar-dark">
+                <a href="" class="navbar-brand">
+                    <div class="text-center">
+                        {%if user.is_staff%}
+                            {% if data.Profile_Pic %}
+                            <img src="/media/{{data.Profile_Pic}}" style="height:50px;width:50px;border-radius:50%">
+                            {% else %}
+                            <img src="{% static 'img/user.jpg' %}" style="height:50px;width:50px;border-radius:50%">
+                            {% endif %}
+                        </div>
+                        <small>{{user.username}}</small>
+                    </a>
+                    <ul class="navbar-nav py-5">
+                    <li class="nav-item">
+                        <a href="{% url 'Stud_Dash' %}" class="nav-link">View Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'EditProfile' %}" class="nav-link">Edit Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'Change_Pass' %}" class="nav-link">Change Password</a>
+                    </li>
+                    {% comment %} <li class="nav-item">
+                        <a href="{% url 'result' %}" class="nav-link">Result</a>
+                    </li> {% endcomment %}
+                    <li class="nav-item">
+                        <a href="{% url 'result_form' %}" class="nav-link">Result Form</a>
+                    </li>
+                   
+                    
+                    
+                    
+                    <li class="nav-item">
+                        <a href="{% url 'Logout' %}" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+                {% else %}
+                {% if data.Profile_Pic %}
+                            <img src="/media/{{data.Profile_Pic}}" style="height:50px;width:50px;border-radius:50%">
+                            {% else %}
+                            <img src="{% static 'img/user.jpg' %}" style="height:50px;width:50px;border-radius:50%">
+                            {% endif %}
+                        </div>
+                        <small>{{user.username}}</small>
+                    </a>
+                    <ul class="navbar-nav py-5">
+                    <li class="nav-item">
+                        <a href="{% url 'Stud_Dash' %}" class="nav-link">View Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'EditProfile' %}" class="nav-link">Edit Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'Change_Pass' %}" class="nav-link">Change Password</a>
+                    </li>
+                    {%if data.is_fee_paid%}
+                    <li class="nav-item">
+                        <a href="{% url 'result' %}" class="nav-link">Result</a>
+                    </li>
+                    {%else%}
+                        <li class="nav-item">
+                            <a href="{% url 'Result_Not_Out' %}" class="nav-link">Result</a>
+                        </li>
+                        {% endif %}
+                    
+                        {% comment %} {% if data1.is_Result_Out %}
+                            <li class="nav-item">
+                                <a href="{% url 'result' %}" class="nav-link">Result</a>
+                             </li> 
+                        {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'Result_Not_Out' %}" class="nav-link">Result(Noout)</a>
+                        </li>
+                        {% endif %} {% endcomment %}
+
+                    <li class="nav-item">
+                        <a href="{% url 'Logout' %}" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+                {% endif %}
+            </nav>
+        </div>
+
+        <!-- right side menu -->
+        <div class="col-md-10">
+            {% block dashboard %}
+
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{%endif%}
+{% endblock %}
+
+
+

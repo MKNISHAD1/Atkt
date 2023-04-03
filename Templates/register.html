@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Register {% endblock title %}
+
+{% block Body %}
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-6 px-0"  style="background:url('/static/img/clgimg.jpg');background-size:100% 100%;">
+          <div  class="h-100" style="background:rgba(0,0,0,0.5)"></div>
+      </div>
+      <div class="col-md-6">
+          <h1 style="text-align:center;">Student SignUp Form</h1>
+          <form action="" method="POST" enctype="multipart/form-data">
+               {% csrf_token %}
+               <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">First Name</label>
+                            <input type="text" class="form-control" placeholder="Enter First Name" name="first" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Middle Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Middle Name" name="middle" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 py-2">
+                            <label for="">Last Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Last Name" name="last" required>
+                        </div>
+                        <div class="col-md-6 py-2">
+                            <label for="">Father Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Father Name" name="father" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Username</label>
+                            <div class="form-group">
+                              <samll id="result"></small>
+                            </div>
+                  <input type="text" class="form-control" placeholder="Enter Username" name="usrname" id="username" onkeyup="usercheck()" required>
+              </div></div>
+              <div class="col-md-6 py-4">
+              <div class="form-group">
+                  <label for="">Password</label>
+                  <input type="password" class="form-control" placeholder="Enter Password" name="password" required> 
+              </div></div></div>
+              <div class="row">
+                <div class="col-md-6">
+              <div class="form-group">
+                  <label for="">Email</label>
+                  <input type="email" class="form-control" placeholder="Enter Email Address" name="email" required>
+              </div></div>
+              <div class="col-md-6">
+              <div class="form-group">
+                  <label for="">Contact Number</label>
+                  <input type="number" class="form-control" placeholder="Enter Mobile Number" name="phone" required>
+              </div></div></div>
+              <div class="row">
+                <div class="col-md-6">
+              <div class="form-group">
+                  <label for="">Address</label>
+                  <input type="text" class="form-control" placeholder="Enter Address" name="addr" required>
+              </div></div>
+              <div class="col-md-6">
+              <div class="form-group">
+                  <label for="">Roll Number</label>
+                  <input type="number" class="form-control" placeholder="Enter Roll Number" name="rno" required>
+              </div></div></div>
+              <div class="row">
+                <div class="col-md-6">
+              <div class="form-group">
+                  <label for="">Upload Profile Pic</label>
+                  <input type="file" class="form-control" placeholder="Enter Email Address" name="pic" required>
+              </div></div>
+              <div class="col-md-6">
+              <div class="form-group"> 
+                  <label for="">Upload Fee Pdf</label>
+                  <input type="file" class="form-control" placeholder="Enter Mobile Number" name="pdf" required>
+              </div></div></div>
+        <div class="row">
+                <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Control Number</label>
+                    <input type="number" class="form-control" placeholder="Enter Email Address" name="cno" required>
+                </div></div>
+                <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">PRN Number</label>
+                    <input type="number" class="form-control" placeholder="Enter Mobile Number" name="prn" required>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Course">Choose Course</label>
+                        <select name="Course" id="Course">
+                            <option value="Bsc" checked="True">Bachlor of Science</option>
+                            <option value="BscIT">Bachlor of Science In Information Technology</option>
+                            <option value="BscCS">Bachlor of Science In Computer Science</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 py-4">
+                    <div class="form-group">
+                        <label for="Gender">Gender</label>
+                        <select name="gender" id="gender">
+                            <option value="Male" checked="True">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+             
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Class">Choose Class</label>
+                        <select name="Class" id="Class">
+                            <option value="First Year" checked="True">First Year (FY)</option>
+                            <option value="Second Year">Second Year (SY)</option>
+                            <option value="Third Year">Third Year (TY)</option>
+                        </select>
+                    </div>
+                </div>
+                    <div class="col-md-6">
+                        <label for="Semester">Choose Semester</label>
+                        <select name="Semester" id="Semester">
+                            <option value="1" checked="True">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+                        </select>
+                    </div>
+                
+                 
+                    <div class="col-md-6">
+                        <label for="Role">Role : </label>
+                        <input type="radio"  value="Stud" name="role" checked="True">Student
+                    </div>
+            
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="submit" value="SignUp" class="btn btn-success" id="submitbtn">
+                    </div>
+                    <div class="form-group">
+                        <Strong>SignUp As <a href="{% url 'Tea_Dash' %}">Teacher</a></strong>
+                    </div>
+                </div>    
+            
+        </form>
+        
+    </div>
+</div>
+
+<script>
+  function usercheck(){
+      let unm = document.getElementById("username").value;
+      $.ajax({
+          url:"{% url 'check_user' %}",
+          type:"get",
+          data:{usr:unm},
+          success:function(data){
+            if(data=="Exist"){
+                $("#result").html("This Usernane is Already Taken  !!!!").addClass("text-danger");
+                $("#username").addClass("alert alert-danger");
+                $("#submitbtn").attr("disabled","disabled");
+            }
+            else{
+                $("#result").html("");
+                $("#username").removeClass("alert alert-danger");
+                $("#submitbtn").removeAttr("disabled");
+            }
+        }
+    })
+      
+  }
+</script>
+ 
+{% comment %} <div>
+    <h2> Previous Data</h2>
+    {% for i in STU %}
+        {{i.Semester}}
+        {{i.PRN}}
+    {% endfor %}
+    {% for j in Course %}
+        {{i.name}}
+        {{i.course}}
+    {% endfor %}
+    {% for i in Class %}
+        {{i.Name}}
+        {{i.subject}}
+    {% endfor %}
+</div> {% endcomment %}
+
+{% if status %}
+  <script>
+      alert("{{status}}");
+      window.location="/"
+
+    </script>
+{% endif %}
+
+
+{% endblock Body %}
+</body>
+</html> 
